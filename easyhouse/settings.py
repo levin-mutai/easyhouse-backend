@@ -43,10 +43,16 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.isAuthenticated',
     ),
 }
-# ALLOWED_HOSTS = [
-#     'https://easyhouse.Africa',
-#     'localhost'
-# ]
+
+
+CORS_ORIGIN_WHITELIST = (
+    'http://localhost:8080',
+)
+ALLOWED_HOSTS = [
+    'https://easyhouse.Africa',
+    'localhost',
+    'http://localhost:8080'
+]
 
 
 # Application definition
@@ -61,11 +67,13 @@ INSTALLED_APPS = [
     'housingApp',
     "corsheaders",
     'rest_framework',
+    'rest_framework.authtoken',
     'djoser',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',

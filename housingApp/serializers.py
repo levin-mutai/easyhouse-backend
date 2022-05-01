@@ -17,7 +17,7 @@ class ListingSerializer(serializers.ModelSerializer):
             'price',
             'landlord',
             'town',
-            'availability   ',
+            'availability',
             'units_available',
         )
         def update(self,serializer):
