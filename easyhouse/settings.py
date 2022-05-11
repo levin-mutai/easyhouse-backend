@@ -47,11 +47,13 @@ REST_FRAMEWORK = {
 
 CORS_ORIGIN_WHITELIST = (
     'http://localhost:8080',
+    'http://127.0.0.1:8000',
 )
 ALLOWED_HOSTS = [
     'https://easyhouse.Africa',
     'localhost',
-    'http://localhost:8080'
+    'http://localhost:8080',
+    'http://127.0.0.1:8000',
 ]
 
 
@@ -64,12 +66,15 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'housingApp',
     "corsheaders",
     'rest_framework',
     'rest_framework.authtoken',
     'djoser',
+    'housingApp',
+    'admin_interface',
+    'colorfield',
 ]
+X_FRAME_OPTIONS='SAMEORIGIN' # only if django version >= 3.0
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

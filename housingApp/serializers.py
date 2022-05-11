@@ -19,6 +19,11 @@ class ListingSerializer(serializers.ModelSerializer):
             'town',
             'availability',
             'units_available',
+            'image_url1',
+            'image_url2',
+            'agent',
+            'features',
+            'requirement',
         )
         def update(self,serializer):
             serializer.save()

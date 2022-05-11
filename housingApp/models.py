@@ -29,16 +29,22 @@ class Listing(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=100, unique=True)
     description = models.CharField(max_length=1000)
-    location = models.CharField(max_length=50)
+    location = models.CharField(max_length=50, help_text='Area Located in Town')
     house_type = models.ForeignKey(RoomType, on_delete=models.CASCADE, related_name='hostelT')
     ratings = models.IntegerField()
     verified = models.BooleanField(default=False)
     image_url = models.URLField()
+    image_url1 = models.URLField(null=True, default='')
+    image_url2 = models.URLField(null=True, default='')
     price = models.PositiveIntegerField()
     landlord = models.ForeignKey(Landlord, on_delete=models.CASCADE, related_name='lords')
-    town = models.CharField(max_length=50)
+    agent = models.CharField(max_length=30, default='')
+    town = models.CharField(max_length=50, help_text="The town where the property is located")
     availability = models.BooleanField(default=True)
     units_available = models.IntegerField(null=False)
+    features = models.CharField(max_length=500, default='')
+    requirement = models.CharField(max_length=750, default='')
+
 
     class Meta:
         ordering = ['units_available']
