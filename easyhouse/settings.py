@@ -24,6 +24,8 @@ SECRET_KEY = 'django-insecure-%rav7s4q$fc!@rbze_ondf+))y=@-$02#_al=^yi89b%=ke0hf
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+
+ACCOUNT_USER_MODEL_USERNAME_FIELD = None
 CORS_ALLOW_METHODS = [
     "DELETE",
     "GET",
@@ -54,6 +56,7 @@ ALLOWED_HOSTS = [
     'localhost',
     'http://localhost:8080',
     'http://127.0.0.1:8000',
+    '127.0.0.1'
 ]
 
 
@@ -71,10 +74,12 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'djoser',
     'housingApp',
-    'admin_interface',
-    'colorfield',
+    'phonenumber_field',
+    'accounts'
+    # 'admin_interface',
+    # 'colorfield',
 ]
-X_FRAME_OPTIONS='SAMEORIGIN' # only if django version >= 3.0
+# X_FRAME_OPTIONS='SAMEORIGIN' # only if django version >= 3.0
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -104,7 +109,7 @@ TEMPLATES = [
         },
     },
 ]
-
+AUTH_USER_MODEL = 'accounts.Accounts'
 WSGI_APPLICATION = 'easyhouse.wsgi.application'
 
 

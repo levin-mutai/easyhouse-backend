@@ -1,5 +1,9 @@
+import email
+from http import client
+from multiprocessing.sharedctypes import Value
 from django.db import models
-
+from phonenumber_field.modelfields import PhoneNumberField
+from django.contrib.auth.models import User,AbstractBaseUser,BaseUserManager
 
 # Create your models here.
 # used to populate the database. Each class represents a table or a document in the database
@@ -59,18 +63,18 @@ class Listing(models.Model):
             self.available = True
 
 
-class Booking(models.Model):
+class reserved(models.Model):
     id = models.AutoField(primary_key=True)
     Fullname = models.CharField(max_length=100)
     house = models.ForeignKey(Listing, on_delete=models.CASCADE)
     room_type = models.ForeignKey(RoomType, on_delete=models.CASCADE)
     phone_number = models.CharField(max_length=13, unique=True)
     email = models.CharField(max_length=50, unique=True)
-
+    r_id = models.IntegerField()
     def __str__(self):
         return self.id+"  "+self.room_type
 
-class ConfirmedBookings(models.Model):
+class Bookings(models.Model):
     id = models.AutoField(primary_key=True)
     booking = models.ForeignKey(Booking, on_delete=models.CASCADE)
     date = models.DateTimeField()
@@ -79,3 +83,12 @@ class ConfirmedBookings(models.Model):
 
     def __str__(self):
         return self.id+"  "+self.booking+"   "+self.Amount_paid
+
+
+# class userData(models.Model):
+#     user = models.OneToOneField(User,on_delete=models.CASCADE)
+#     gender = models.CharField(max_length=50,choices=[('Male','male'),('Female','female')], default='other'),
+
+#     def __str__(self) -> str:
+#         return self.user.usernames
+

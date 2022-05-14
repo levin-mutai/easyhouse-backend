@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Listing, Booking, Landlord
+from .models import Listing, Bookings, reserved,Landlord
 
 
 class ListingSerializer(serializers.ModelSerializer):
@@ -32,7 +32,7 @@ class ListingSerializer(serializers.ModelSerializer):
 
 class BookingSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Booking
+        model = reserved
         fields = (
             'id',
             'Fullname',
@@ -40,6 +40,7 @@ class BookingSerializer(serializers.ModelSerializer):
             'room_type',
             'phone_number',
             'email',
+            'r_id'
         )
 
 
@@ -53,3 +54,15 @@ class LandlordSerializer(serializers.ModelSerializer):
             'email',
             'phone_number',
         )
+
+# class ReservedSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = reserved
+#         fields = (
+#             'id',
+#             'Fullname',
+#             'house',
+#             'room_type',
+#             'phone_number',
+#             'email',
+#         )

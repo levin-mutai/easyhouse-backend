@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from rest_framework import generics
 
-from .models import Listing, Booking, Landlord
+from .models import Listing, reserved, Landlord
 from .serializers import ListingSerializer, BookingSerializer, LandlordSerializer
 
 # Create your views here.
@@ -18,12 +18,12 @@ class DetailListings(generics.RetrieveUpdateDestroyAPIView):
 
 
 class ListBookings(generics.ListCreateAPIView):
-    queryset = Booking.objects.all()
+    queryset = reserved.objects.all()
     serializer_class = BookingSerializer
 
 
 class DetailBookings(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Booking.objects.all()
+    queryset = reserved.objects.all()
     serializer_class = BookingSerializer
 
 
@@ -35,3 +35,7 @@ class ListLandlords(generics.ListCreateAPIView):
 class DetailLandlords(generics.RetrieveUpdateDestroyAPIView):
     queryset = Landlord.objects.all()
     serializer_class = LandlordSerializer
+
+# class Reserves(generics.reateAPIView):
+#     queryset = Landlord.objects.all()
+#     serializer_class = LandlordSerializer
