@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth.models import Group
 
-from .models import Listing,Booking,ConfirmedBookings,RoomType,Landlord
+from .models import Listing,Bookings,RoomType,Landlord, reserved
 
 
 # class UserInline(admin.StackedInline):
@@ -17,8 +17,8 @@ from .models import Listing,Booking,ConfirmedBookings,RoomType,Landlord
 
 admin.site.site_header = "EasyHouse"
 admin.site.register(Listing)
-admin.site.register(Booking)
-admin.site.register(ConfirmedBookings)
+admin.site.register(reserved)
+admin.site.register(Bookings)
 admin.site.register(RoomType)
 admin.site.register(Landlord)
 admin.site.unregister(Group)

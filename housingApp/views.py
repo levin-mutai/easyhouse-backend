@@ -1,5 +1,6 @@
 from django.shortcuts import render
-from rest_framework import generics
+from rest_framework.response import Response
+from rest_framework import generics,viewsets
 
 from .models import Listing, reserved, Landlord
 from .serializers import ListingSerializer, BookingSerializer, LandlordSerializer
@@ -39,3 +40,16 @@ class DetailLandlords(generics.RetrieveUpdateDestroyAPIView):
 # class Reserves(generics.reateAPIView):
 #     queryset = Landlord.objects.all()
 #     serializer_class = LandlordSerializer
+
+class productsViewset(viewsets.ModelViewSet):
+    serializer_class = BookingSerializer
+    def get_queryset(self):
+        specific_prod = reserved.objects.all()
+        return specific_prod
+
+    def retrieve(self,request, *args, **kwargs):
+        params = kwargs
+        print(params['pk'])
+        queryset = reserved.objects.filter(phone_number= params['pk'])
+        serializer = BookingSerializer(queryset, many=True)
+        return Response(serializer.data)

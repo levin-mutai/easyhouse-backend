@@ -37,10 +37,13 @@ class BookingSerializer(serializers.ModelSerializer):
             'id',
             'Fullname',
             'house',
+            'price',
             'room_type',
             'phone_number',
             'email',
-            'r_id'
+            'house_name',
+            'repetitioncheck',
+            'confirmed'
         )
 
 

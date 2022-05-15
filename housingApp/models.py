@@ -1,6 +1,8 @@
+from datetime import date
 import email
 from http import client
 from multiprocessing.sharedctypes import Value
+from xml.etree.ElementTree import tostring
 from django.db import models
 from phonenumber_field.modelfields import PhoneNumberField
 from django.contrib.auth.models import User,AbstractBaseUser,BaseUserManager
@@ -67,16 +69,21 @@ class reserved(models.Model):
     id = models.AutoField(primary_key=True)
     Fullname = models.CharField(max_length=100)
     house = models.ForeignKey(Listing, on_delete=models.CASCADE)
+    price = models.FloatField(default=1000.0)
     room_type = models.ForeignKey(RoomType, on_delete=models.CASCADE)
-    phone_number = models.CharField(max_length=13, unique=True)
-    email = models.CharField(max_length=50, unique=True)
-    r_id = models.IntegerField()
+    phone_number = models.CharField(max_length=13)
+    email = models.CharField(max_length=50)
+    house_name =models.CharField(max_length=150 ,default = '')
+    confirmed = models.BooleanField(default=False,blank=True,null=True, verbose_name="confirmed")
+    date_reserved = models.DateField(verbose_name='date reserved', null=True, auto_now_add=True,)
+    repetitioncheck = models.CharField(max_length=70,unique=True)
+    
     def __str__(self):
-        return self.id+"  "+self.room_type
+        return self.Fullname
 
 class Bookings(models.Model):
     id = models.AutoField(primary_key=True)
-    booking = models.ForeignKey(Booking, on_delete=models.CASCADE)
+    booking = models.ForeignKey(reserved, on_delete=models.CASCADE)
     date = models.DateTimeField()
     Amount_paid = models.IntegerField()
     payment_code = models.CharField(max_length=100)
