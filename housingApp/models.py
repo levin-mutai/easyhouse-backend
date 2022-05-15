@@ -78,6 +78,8 @@ class reserved(models.Model):
     date_reserved = models.DateField(verbose_name='date reserved', null=True, auto_now_add=True,)
     repetitioncheck = models.CharField(max_length=70,unique=True)
     
+    class Meta:
+        ordering = ['confirmed']
     def __str__(self):
         return self.Fullname
 
